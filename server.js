@@ -58,8 +58,9 @@ app.set('port', port);
 app.get('/api/v1/health', handlers.health);
 app.post('/api/v1/login', handlers.login);
 app.post('/api/v1/jsonpatch', verifyToken, handlers.jsonPatchHandler);
+app.post('/api/v1/image', verifyToken, handlers.imageHandler);
 // app.post('/api/v1/verify', verifyToken, handlers.health);
-
+// https://d37y9b4kfek2hl.cloudfront.net/blog/images/posts/29/remove-public-path.png
 
 
 /**
