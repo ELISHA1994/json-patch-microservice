@@ -15,6 +15,9 @@ import {
     onError,
     onListening
 } from "./utils/appsupport";
+import * as handlers from "./controllers/controllers.js"
+import { default as verifyToken } from "./middlewares/checkAuth.js"
+import {jsonPatchHandler} from "./controllers/controllers.js";
 
 /**
  *  Global Constant variable
@@ -51,6 +54,13 @@ app.set('port', port);
 /**
  *  Initialize App Routes
  */
+
+app.get('/api/v1/health', handlers.health);
+app.post('/api/v1/login', handlers.login);
+app.post('/api/v1/jsonpatch', verifyToken, handlers.jsonPatchHandler);
+// app.post('/api/v1/verify', verifyToken, handlers.health);
+
+
 
 /**
  * Not Found and Error Middleware
