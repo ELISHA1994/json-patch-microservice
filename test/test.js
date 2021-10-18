@@ -158,10 +158,10 @@ describe('Post jsonpatching requests', function () {
 
 describe('Post thumbnail creation requests', function () {
     const jsonFile = {
-        "url" : "https://cdn.pixabay.com/photo/2017/02/24/00/13/png-2093542_960_720.png"
+        "url" : "https://d37y9b4kfek2hl.cloudfront.net/blog/images/posts/29/remove-public-path.png"
     };
     const jsonFile2 = {
-        "url" : "https://cdn.pixabay.com/photo/2017/02/24/00/13/png-2093542_960_720.txt"
+        "url" : "https://d37y9b4kfek2hl.cloudfront.net/blog/images/posts/29/remove-public-path.txt"
     };
     test('should be unsuccessful thumbnail creation without auth', async function () {
         const res = await request

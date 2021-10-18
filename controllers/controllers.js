@@ -29,7 +29,6 @@ export async function jsonPatchHandler(req, res, next) {
             Patch: jsonObject
         })
     } catch(err) {
-        console.log('jsonpatch error: ', err)
         next(err)
     }
 }
@@ -43,9 +42,7 @@ export async function imageHandler(req, res, next) {
     try {
         if (extension === '.jpg' || extension === '.png' || extension === '.jpeg' || extension === '.bmp') {
             const filename = await download.image(options);
-            console.log('filename',filename.filename);
             let fName = path.basename(`${filename.filename}`);
-            console.log('fName', fName)
             const image = await resizeImg(fs.readFileSync(filename.filename), {
                 width: 50, height: 50
             });

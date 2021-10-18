@@ -1,6 +1,5 @@
 /logs
 .idea
-/public
 # dependencies
 /node_modules
 /.pnp
