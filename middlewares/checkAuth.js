@@ -5,7 +5,7 @@ export default async (req, res, next) => {
 
     try {
         if (typeof jwtString === 'undefined') {
-            throw new Error('No authorizationCode provided')
+            res.status(403).json({error: 'No authorizationCode provided'})
         }
         const bearer = jwtString.split(' ');
         const payload = await jwt.verify(bearer[1], process.env.JWT_SECRET);
@@ -14,7 +14,6 @@ export default async (req, res, next) => {
             next()
         }
     } catch (err) {
-        err.statusCode = 403
         next(err)
     }
 

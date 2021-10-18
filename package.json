@@ -6,7 +6,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "DEBUG=server:* node --experimental-modules --es-module-specifier-resolution=node  --trace-warnings ./server.js"
+    "start": "DEBUG=server:* node --experimental-modules --es-module-specifier-resolution=node  --trace-warnings ./server.js",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage --watch --testTimeout=10000"
   },
   "keywords": [],
   "author": "Elisha Dutse Bello",
@@ -24,5 +25,9 @@
     "morgan": "^1.10.0",
     "resize-img": "^2.0.0",
     "rotating-file-stream": "^2.1.6"
+  },
+  "devDependencies": {
+    "jest": "^27.3.0",
+    "supertest": "^6.1.6"
   }
 }

@@ -18,15 +18,20 @@ export async function login(req, res, next) {
     };
     const secret = process.env.JWT_SECRET
     const token = jwt.sign(user, secret, { expiresIn: 86400 })
-    res.status(200).json({ accessToken: token }).status(200)
+    res.status(200).json({ accessToken: token })
 }
 
 export async function jsonPatchHandler(req, res, next) {
-    let { jsonObject, jsonPatch} = req.body
-    jsonpatch.apply(jsonObject, jsonPatch)
-    res.status(200).json({
-        patch: jsonObject
-    })
+    try {
+        let { jsonObject, jsonPatch} = req.body
+        jsonpatch.apply(jsonObject, jsonPatch)
+        res.status(200).json({
+            Patch: jsonObject
+        })
+    } catch(err) {
+        console.log('jsonpatch error: ', err)
+        next(err)
+    }
 }
 
 export async function imageHandler(req, res, next) {

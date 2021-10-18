@@ -81,6 +81,13 @@ export function basicErrorHandler(err, req, res, next) {
     res.locals.error = req.app.get('env') === 'development' ?
         err : {};
     // Error message
+    if (err.name === 'JsonWebTokenError') {
+        res.status(403)
+        res.json({
+            message: err.message,
+            error: err
+        });
+    }
     res.status(err.status || 500)
     res.json({
         message: err.message,
