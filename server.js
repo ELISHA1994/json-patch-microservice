@@ -14,10 +14,11 @@ import {
     basicErrorHandler,
     onError,
     onListening
-} from "./utils/appsupport";
+} from "./utils/appsupport.js";
 import * as handlers from "./controllers/controllers.js"
 import { default as verifyToken } from "./middlewares/checkAuth.js"
-import {jsonPatchHandler} from "./controllers/controllers.js";
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.js';
 
 /**
  *  Global Constant variable
@@ -31,9 +32,11 @@ const debug = DBG('server:debug');
 export const app = express();
 export const port = normalizePort(process.env.PORT || '1337');
 
+
 /**
  *  Initialize the app middlewares
  */
+app.set('port', port);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -49,12 +52,15 @@ app.use(logger(process.env.REQUEST_LOG_FORMAT || 'common', {
         })
         : process.stdout
 }));
-app.set('port', port);
+app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup({ ...swaggerDocument }, { explorer: true })
+);
 
 /**
  *  Initialize App Routes
  */
-
 app.get('/api/v1/health', handlers.health);
 app.post('/api/v1/login', handlers.login);
 app.post('/api/v1/jsonpatch', verifyToken, handlers.jsonPatchHandler);

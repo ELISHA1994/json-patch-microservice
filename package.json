@@ -6,8 +6,9 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "DEBUG=server:* node --experimental-modules --es-module-specifier-resolution=node  --trace-warnings ./server.js",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage --watch --testTimeout=10000"
+    "start": "DEBUG=server:* node --experimental-modules --es-module-specifier-resolution=node --experimental-json-modules --trace-warnings ./server.js",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage --watch --testTimeout=10000",
+    "docker-build": "docker build --no-cache -t json-patch-microservice ."
   },
   "keywords": [],
   "author": "Elisha Dutse Bello",
@@ -24,7 +25,8 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "resize-img": "^2.0.0",
-    "rotating-file-stream": "^2.1.6"
+    "rotating-file-stream": "^2.1.6",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "jest": "^27.3.0",
